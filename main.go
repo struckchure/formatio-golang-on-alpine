@@ -14,7 +14,7 @@ func main() {
 		return c.JSON(fiber.Map{
 			"app":      "gofiber - demo",
 			"datetime": time.Now().Format("2006-01-02 3:4:5 PM"),
-			"email": os.Getenv("EMAIL")
+			"email": os.Getenv("EMAIL"),
 		})
 	})
 
