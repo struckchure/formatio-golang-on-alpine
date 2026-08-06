@@ -16,7 +16,7 @@ func main() {
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
-			"app":      "gofiber - demo 2",
+			"app":      "gofiber - demo 3",
 			"datetime": time.Now().Format("2006-01-02 3:4:5 PM"),
 			"email":    os.Getenv("EMAIL"),
 		})
