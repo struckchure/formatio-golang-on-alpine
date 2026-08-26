@@ -5,7 +5,6 @@ import (
 	"embed"
 	"errors"
 	"fmt"
-	"net/url"
 	"os"
 	"strconv"
 	"strings"
@@ -69,13 +68,7 @@ func main() {
 func connectDatabase(ctx context.Context) (*pgxpool.Pool, error) {
 	databaseURL := os.Getenv("DATABASE_URL")
 	if databaseURL == "" {
-		databaseURL = fmt.Sprintf("postgres://%s:%s@%s:%s/%s",
-			url.QueryEscape(envOrDefault("POSTGRES_USER", "postgres")),
-			url.QueryEscape(os.Getenv("POSTGRES_PASSWORD")),
-			envOrDefault("POSTGRES_HOST", "localhost"),
-			envOrDefault("POSTGRES_PORT", "5432"),
-			envOrDefault("POSTGRES_DB", "postgres"),
-		)
+		return nil, errors.New("DATABASE_URL is not set")
 	}
 
 	database, err := pgxpool.New(ctx, databaseURL)
